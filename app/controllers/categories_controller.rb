@@ -6,9 +6,10 @@ class CategoriesController < ApplicationController
 
   def show
     category = Category.find(params[:id])
+    articles = category.articles.where(published: true)
     category_json = category.as_json
-    category_json[:total_views] = total_views(category.articles)
-    category_json[:articles] = category.articles.as_json(only: [:id, :title, :views_count])
+    category_json[:total_views] = total_views(articles)
+    category_json[:articles] = articles.as_json(only: [:id, :title, :views_count, :published])
 
     serializer(category_json)
   end
@@ -17,7 +18,7 @@ class CategoriesController < ApplicationController
   def serializer(data)
     render json: { data: data }, include: [
       articles: {
-        only: [:id, :title, :views_count]
+        only: [:id, :title, :views_count, :published]
       }
     ]
   end

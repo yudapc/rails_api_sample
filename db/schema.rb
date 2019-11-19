@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_095634) do
     t.string "title"
     t.integer "category_id"
     t.text "content_body"
-    t.boolean "published"
+    t.boolean "published", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "views_count", default: 0

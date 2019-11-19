@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '/categories', to: 'categories#index', format: 'json'
   get '/categories/:id', to: 'categories#show', format: 'json'
+  
   get '/articles', to: 'articles#index'
   get '/articles/:id', to: 'articles#show'
+  post '/articles', to: 'articles#create'
+  put '/articles/:id', to: 'articles#update'
 end
