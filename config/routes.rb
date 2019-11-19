@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get '/categories', to: 'categories#index', format: 'json'
-  get '/categories/:id', to: 'categories#show', format: 'json'
-  
-  get '/articles', to: 'articles#index'
-  get '/articles/:id', to: 'articles#show'
-  post '/articles', to: 'articles#create'
-  put '/articles/:id', to: 'articles#update'
+  scope "api" do
+    scope "v1" do
+      get '/categories', to: 'v1/categories#index', format: 'json'
+      get '/categories/:id', to: 'v1/categories#show', format: 'json'
+      get '/articles', to: 'v1/articles#index'
+      get '/articles/:id', to: 'v1/articles#show'
+      post '/articles', to: 'v1/articles#create'
+      put '/articles/:id', to: 'v1/articles#update'
+    end
+  end
 end
